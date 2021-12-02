@@ -3,7 +3,7 @@ BUILD_DIR := bin
 
 default: all
 
-all: clean build run
+all: clean build image run
 
 .PHONY: $(BUILD_DIR)/server
 bin/server: cmd/*.go
@@ -19,4 +19,7 @@ clean:
 .PHONY: run
 run: build
 	bin/server
-	
+
+.PHONY: image
+image: build
+	docker build -t urlshortener:test -f Dockerfile ./bin/.
