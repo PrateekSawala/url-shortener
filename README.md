@@ -2,14 +2,14 @@
 
 The project aims to provide a simple URL shortener service that will accept a URL as an argument over a REST API and return a shortened URL as a result.
 
-### Description
+## Description
 
 - The API processes the input URL as an argument over a REST API, write it to a JSON file, and returns a shortened URL as a result.
 - The case where the API request gets made with a long URL that has already got shortened before, then the output response will be the same short URL.
 - The API request made using the shortened URL will redirect the request to the original URL.
 - The project is created using Golang, Docker, HTML, and Makefile.
 
-### Installations
+## Installations
 
 The following software needs to be installed on the system to operate on the application-
 ```
