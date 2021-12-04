@@ -27,6 +27,11 @@ func GenerateShortURL(host string, longUrl string) (*domain.UrlInfo, error) {
 	defer log.Tracef("End")
 
 	response := &domain.UrlInfo{}
+	// Check input
+	if host == "" || longUrl == "" {
+		return response, domain.ErrInvalidInput
+	}
+
 	URLRecords, err := GetURLRecords()
 	if err != nil {
 		log.Debugf("GetURLRecords error: %s", err)
@@ -42,6 +47,7 @@ func GenerateShortURL(host string, longUrl string) (*domain.UrlInfo, error) {
 			return response, err
 		}
 	}
+
 	response.Url = fmt.Sprintf("http://%s/%s/%s", host, domain.ShortUrl, urlRecord.ID)
 	return response, nil
 }

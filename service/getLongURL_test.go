@@ -1,10 +1,10 @@
 package service
 
 import (
+	"testing"
 	"url-shortener/domain"
 
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestGetLongUrlSuccess(t *testing.T) {
@@ -16,4 +16,16 @@ func TestGetLongUrlSuccess(t *testing.T) {
 	result := &domain.UrlInfo{Url: "https://google.com"}
 	assert.Equal(t, result, response)
 	assert.NoError(t, err)
+}
+
+func TestGetLongUrlError(t *testing.T) {
+	t.Run("Should return error of invalid Input", func(t *testing.T) {
+		_, err := GetLongURL("")
+		assert.EqualError(t, domain.ErrInvalidInput, err.Error())
+	})
+
+	t.Run("Should return error of url not found", func(t *testing.T) {
+		_, err := GetLongURL("123456")
+		assert.EqualError(t, domain.ErrURLNotFound, err.Error())
+	})
 }

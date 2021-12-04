@@ -29,16 +29,9 @@ func CreateShortURLHandler(writer http.ResponseWriter, request *http.Request) {
 		routeQueryParameterUrl = fmt.Sprintf("http://%s", routeQueryParameterUrl)
 	}
 
-	err := IsURLAleadyShortened(request.Host, routeQueryParameterUrl)
+	err := IsURLValid(request.Host, routeQueryParameterUrl)
 	if err != nil {
-		log.Debugf("Url %s is already a shortUrl, error %s", routeQueryParameterUrl, err)
-		http.Error(writer, err.Error(), http.StatusBadRequest)
-		return
-	}
-
-	err = IsURLValid(routeQueryParameterUrl)
-	if err != nil {
-		log.Debugf("Url %s is invalidUrl, error %s", routeQueryParameterUrl, err)
+		log.Debugf("Error while check url %s, error: %s", routeQueryParameterUrl, err)
 		http.Error(writer, err.Error(), http.StatusBadRequest)
 		return
 	}

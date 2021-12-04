@@ -11,18 +11,10 @@ import (
 	"github.com/google/uuid"
 )
 
-func IsURLValid(requestUrl string) error {
-	parsedUrl, err := url.Parse(requestUrl)
-	if err != nil {
-		return err
+func IsURLValid(host string, requestUrl string) error {
+	if requestUrl == "" {
+		return domain.ErrInvalidURL
 	}
-	if err == nil && parsedUrl.Scheme != "" && parsedUrl.Host != "" {
-		return nil
-	}
-	return domain.ErrInvalidURL
-}
-
-func IsURLAleadyShortened(host string, requestUrl string) error {
 	parsedUrl, err := url.Parse(requestUrl)
 	if err != nil {
 		return err
@@ -34,7 +26,10 @@ func IsURLAleadyShortened(host string, requestUrl string) error {
 			return domain.ErrURLIsAlreadyShorted
 		}
 	}
-	return nil
+	if err == nil && parsedUrl.Scheme != "" && parsedUrl.Host != "" {
+		return nil
+	}
+	return domain.ErrInvalidURL
 }
 
 func IsUUIDValid(u string) bool {
