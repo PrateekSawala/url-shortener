@@ -39,7 +39,7 @@ func CreateShortURLHandler(writer http.ResponseWriter, request *http.Request) {
 	err = IsURLValid(routeQueryParameterUrl)
 	if err != nil {
 		log.Debugf("Url %s is invalidUrl, error %s", routeQueryParameterUrl, err)
-		http.Error(writer, err.Error(), http.StatusBadRequest)
+		http.Error(writer, domain.InvalidUrl, http.StatusBadRequest)
 		return
 	}
 

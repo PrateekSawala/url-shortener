@@ -15,7 +15,7 @@ import (
 func IsURLValid(url string) error {
 	_, err := http.Get(url)
 	if err != nil {
-		return domain.ErrInvalidURL
+		return err
 	}
 	return nil
 }

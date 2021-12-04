@@ -21,6 +21,11 @@ func Run() {
 	logging.InitializeLogging()
 	log := logging.Log("Run")
 
+	// Check if port is provided in environment configuration
+	if os.Getenv("TEST_PORT") != "" {
+		serverPort = os.Getenv("TEST_PORT")
+	}
+
 	go func() {
 		log.Infof("Starting server at port: %s", serverPort)
 		err := http.ListenAndServe(serverPort, setUpServer())
@@ -45,9 +50,9 @@ func setUpServer() *mux.Router {
 
 	// Handler for serving static folder files
 	staticFileServer := http.FileServer(http.Dir("./static"))
+	r.Handle("/", staticFileServer)
 
 	r.HandleFunc("/createShortUrl/", endpoint.CreateShortURLHandler)
 	r.HandleFunc("/shortUrl/{id}", endpoint.GetOriginalURLHandler)
-	r.Handle("/", staticFileServer)
 	return r
 }

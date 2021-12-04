@@ -18,8 +18,7 @@ import (
 )
 
 var (
-	_, b, _, _    = runtime.Caller(0)
-	URLRecordPath = filepath.Dir(path.Join(path.Dir(b))) + domain.URLRecordFolderPath
+	URLRecordPath string
 )
 
 func GenerateShortURL(host string, longUrl string) (*domain.UrlInfo, error) {
@@ -87,6 +86,7 @@ func CheckUrl(URLRecords []domain.UrlRecord, url string) domain.UrlRecord {
 
 func GetURLRecords() ([]domain.UrlRecord, error) {
 	response := []domain.UrlRecord{}
+	URLRecordPath = GetURLRecordPath()
 	// Check if the URLRecord path exist or not
 	_, err := os.Stat(URLRecordPath)
 	if err == nil {
@@ -110,4 +110,13 @@ func GetURLRecords() ([]domain.UrlRecord, error) {
 		return response, err
 	}
 	return response, nil
+}
+
+func GetURLRecordPath() string {
+	if os.Getenv("URL_RECORD_FILE_PATH") != "" {
+		return os.Getenv("URL_RECORD_FILE_PATH")
+	}
+	_, b, _, _ := runtime.Caller(0)
+	urlRecordPath := filepath.Dir(path.Join(path.Dir(b))) + domain.URLRecordFolderPath
+	return urlRecordPath
 }
