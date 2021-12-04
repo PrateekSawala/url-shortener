@@ -3,7 +3,7 @@ BUILD_DIR := bin
 
 default: all
 
-all: clean build image run
+all: clean build image run test
 
 .PHONY: $(BUILD_DIR)/server
 bin/server: cmd/*.go
@@ -22,7 +22,7 @@ run: build
 
 .PHONY: test
 test:
-	go test ./endpoint/... ./service/...
+	go test -v -cover -coverprofile=cover.out -covermode=atomic ./endpoint/... ./service/...
 
 .PHONY: image
 image: build

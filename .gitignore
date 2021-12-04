@@ -1,2 +1,4 @@
 # Ignore bin folder files
 bin
+# Ignore test coverage file
+cover.out
