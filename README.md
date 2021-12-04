@@ -1,6 +1,6 @@
 ## Overview
 
-The project aims to provide a simple URL shortener service that will accept a URL as an argument over a REST API and return a shortened URL as a result.
+The project aims to provide a simple URL shortener service.
 
 ## Description
 
@@ -11,7 +11,7 @@ The project aims to provide a simple URL shortener service that will accept a UR
 
 ## Installations
 
-The following software needs to be installed on the system to operate on the application-
+The following software needs to be installed on the system to operate on the application.
 ```
 1. Golang
 2. Make
