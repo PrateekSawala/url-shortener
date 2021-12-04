@@ -7,6 +7,9 @@ import (
 	"syscall"
 
 	"url-shortener/domain/logging"
+	"url-shortener/endpoint"
+
+	"github.com/gorilla/mux"
 )
 
 var (
@@ -16,15 +19,11 @@ var (
 func Run() {
 	/* Initialize Logging */
 	logging.InitializeLogging()
-
 	log := logging.Log("Run")
 
-	handler := setUpServer()
-	srv := &http.Server{Addr: serverPort, Handler: handler}
 	go func() {
 		log.Infof("Starting server at port: %s", serverPort)
-
-		err := srv.ListenAndServe()
+		err := http.ListenAndServe(serverPort, setUpServer())
 		if err != nil {
 			if err == http.ErrServerClosed {
 				log.Info("Server shut down.")
@@ -41,7 +40,14 @@ func Run() {
 	log.Info("Shutting down server")
 }
 
-func setUpServer() http.Handler {
-	mux := http.NewServeMux()
-	return mux
+func setUpServer() *mux.Router {
+	r := mux.NewRouter()
+
+	// Handler for serving static folder files
+	staticFileServer := http.FileServer(http.Dir("./static"))
+
+	r.HandleFunc("/createShortUrl/", endpoint.CreateShortURLHandler)
+	r.HandleFunc("/shortUrl/{id}", endpoint.GetOriginalURLHandler)
+	r.Handle("/", staticFileServer)
+	return r
 }

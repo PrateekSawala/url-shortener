@@ -20,6 +20,10 @@ clean:
 run: build
 	bin/server
 
+.PHONY: test
+test:
+	go test ./endpoint/... ./service/...
+
 .PHONY: image
 image: build
 	docker build -t urlshortener:test -f Dockerfile ./bin/.
