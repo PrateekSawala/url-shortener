@@ -2,7 +2,6 @@ package endpoint
 
 import (
 	"fmt"
-	"net/http"
 	"net/url"
 	"path/filepath"
 	"strings"
@@ -12,12 +11,15 @@ import (
 	"github.com/google/uuid"
 )
 
-func IsURLValid(url string) error {
-	_, err := http.Get(url)
+func IsURLValid(requestUrl string) error {
+	parsedUrl, err := url.Parse(requestUrl)
 	if err != nil {
 		return err
 	}
-	return nil
+	if err == nil && parsedUrl.Scheme != "" && parsedUrl.Host != "" {
+		return nil
+	}
+	return domain.ErrInvalidURL
 }
 
 func IsURLAleadyShortened(host string, requestUrl string) error {

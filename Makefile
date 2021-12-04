@@ -18,6 +18,7 @@ clean:
 
 .PHONY: run
 run: build
+	bin/server
 
 .PHONY: test
 test:
