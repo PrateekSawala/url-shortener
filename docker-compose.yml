@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+
+  urlshortener:
+    image: urlshortener:test
+    restart: always
+    container_name: urlshortener
+    ports:
+      - 3002:80
+    volumes:
+      - ./static:/static
+      - ./templates:/templates:rw
