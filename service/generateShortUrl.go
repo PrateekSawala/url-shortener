@@ -93,18 +93,20 @@ func CheckUrl(URLRecords []domain.UrlRecord, url string) domain.UrlRecord {
 func GetURLRecords() ([]domain.UrlRecord, error) {
 	response := []domain.UrlRecord{}
 	URLRecordPath = GetURLRecordPath()
-	// Check if the URLRecord path exist or not
-	_, err := os.Stat(URLRecordPath)
+	// Check if the URLRecord exist or not
+	fileInfo, err := os.Stat(URLRecordPath)
 	if err == nil {
 		// Reading file from the path
 		record, err := ioutil.ReadFile(URLRecordPath)
 		if err != nil {
 			return response, err
 		}
-		// Find URL Records
-		err = json.Unmarshal([]byte(record), &response)
-		if err != nil {
-			return response, err
+		if fileInfo.Size() != 0 {
+			// Find URL Records
+			err = json.Unmarshal([]byte(record), &response)
+			if err != nil {
+				return response, err
+			}
 		}
 	} else if errors.Is(err, os.ErrNotExist) {
 		// Create new record file
