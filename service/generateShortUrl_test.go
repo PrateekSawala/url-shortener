@@ -1,8 +1,10 @@
 package service
 
 import (
+	"fmt"
 	"path/filepath"
 	"testing"
+	"time"
 	"url-shortener/domain"
 
 	"github.com/google/uuid"
@@ -12,7 +14,7 @@ import (
 func TestGenerateShortURLSuccess(t *testing.T) {
 
 	t.Run("Should return a new generated short Url", func(t *testing.T) {
-		response, err := GenerateShortURL("localhost:3002", "https://youtube.com")
+		response, err := GenerateShortURL("localhost:3002", fmt.Sprintf("https://%d.com", time.Now().UnixNano()))
 		if err != nil {
 			t.Errorf("GenerateShortURL Error: %s", err)
 			return
@@ -23,7 +25,7 @@ func TestGenerateShortURLSuccess(t *testing.T) {
 		assert.Equal(t, err == nil, true)
 	})
 
-	t.Run("Should return the already shortened URL", func(t *testing.T) {
+	t.Run("Should return a already shortened URL", func(t *testing.T) {
 		response, err := GenerateShortURL("localhost:3002", "https://google.com")
 		if err != nil {
 			t.Errorf("GenerateShortURL Error: %s", err)

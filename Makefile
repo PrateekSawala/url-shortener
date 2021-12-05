@@ -8,6 +8,8 @@ all: clean build image run test
 .PHONY: $(BUILD_DIR)/server
 bin/server: cmd/*.go
 	CGO_ENABLED=0 go build -o ./bin/server ./cmd/
+	cp -R ./static ./bin/static
+	cp -R ./templates ./bin/templates
 
 .PHONY: build
 build: clean bin/server
