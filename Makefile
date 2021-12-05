@@ -3,7 +3,7 @@ BUILD_DIR := bin
 
 default: all
 
-all: clean build image run test
+all: clean build run
 
 .PHONY: $(BUILD_DIR)/server
 bin/server: cmd/*.go

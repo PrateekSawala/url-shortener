@@ -11,7 +11,7 @@ The project aims to provide a simple URL shortener service.
 
 ## Installations
 
-The following software needs to be installed on the system to operate on the application.
+The following software needs to be installed in the operating system to operate on the application.
 ```
 1. Golang
 2. Make
@@ -20,16 +20,26 @@ The following software needs to be installed on the system to operate on the app
 
 ## API Endpoints
 
-Below is the list of API endpoints with their respective input and output.
+Below is the list of API endpoints with their respective input and output. Consider Base_URL to be the exposed application port.
+Example: Base_URL=http://localhost:3002 
+
 ```
 1. To Create a ShortURL -
 
 #### Input Request
 GET {Base_URL}/createShortUrl/?url={Long_URL}
 
+Example: 
+http://localhost:3002/createShortUrl/?url=https://google.com
+
 #### Output Response
 {
     "Url": "{Base_URL}/shortUrl/{shortURL_Path}"
+}
+
+Example:
+{
+    "Url": "http://localhost:3002/shortUrl/2aa789c823074703b7baa8a524eb4aad"
 }
 ```
 ```
@@ -38,8 +48,14 @@ GET {Base_URL}/createShortUrl/?url={Long_URL}
 #### Input Request
 GET "{Base_URL}/shortUrl/{shortURL_Path}"
 
+Example: 
+http://localhost:3002/shortUrl/2aa789c823074703b7baa8a524eb4aad
+
 #### Output Response
 Redirection to the original URL
+
+Example: 
+https://google.com
 ```
 
 ## Useful make commands
@@ -50,15 +66,22 @@ Redirection to the original URL
 ###### Run the application
 - make run
 
+###### Execute all operations
+- make
+
 ###### Unit test the application
 - make test
 
 ###### Create a docker image to package the application
 - make image
 
-###### Execute all operations
-- make
-
 ## Containerization
 
-A docker file is present in the application with a docker-compose file. The **make image** command can build the docker image, which later can be used by the docker-compose file to serve the application over the path [Url]({Base_URL}) for the API requests.
+A docker file is present in the application with a docker-compose file. The **make image** command can build the docker image. Any of the following two ways can get used for serving the application over a path [Url]({Base_URL}) for the API requests after the image is created.
+```
+1. Run using docker.
+docker run -p 3002:80 --name urlshortener urlshortener:test
+
+2. Run using the docker-compose file.
+docker-compose -f docker-compose.yml up
+```
