@@ -75,6 +75,10 @@ https://google.com
 ###### Create a docker image to package the application
 - make image
 
+## Unit test
+
+The unit tests are present in the application. The **make test** command can run unit tests on the application after the application starts serving API requests over a path [Url]({Base_URL}).
+
 ## Containerization
 
 A docker file is present in the application with a docker-compose file. The **make image** command can build the docker image. Any of the following two ways can get used for serving the application over a path [Url]({Base_URL}) for the API requests after the image is created.
