@@ -41,7 +41,7 @@ func TestCreateShortURLError(t *testing.T) {
 		if response.Code != http.StatusBadRequest {
 			t.Error("response code is not 400")
 		}
-		assert.EqualError(t, errors.New(strings.TrimSpace(response.Body.String())), domain.URLIsAlreadyShorted)
+		assert.EqualError(t, errors.New(strings.TrimSpace(response.Body.String())), domain.URLIsAlreadyShortened)
 	})
 
 	t.Run("Should return error of invalid url with response code 400", func(t *testing.T) {

@@ -5,11 +5,11 @@ const (
 
 	/* Return messages */
 
-	InvalidUrl          = "invalid_url"
-	EmptyInput          = "empty_input"
-	URLNotFound         = "url_not_found"
-	InvalidInput        = "invalid_input"
-	URLIsAlreadyShorted = "url_is_already_shotened"
+	InvalidUrl            = "invalid_url"
+	EmptyInput            = "empty_input"
+	URLNotFound           = "url_not_found"
+	InvalidInput          = "invalid_input"
+	URLIsAlreadyShortened = "url_is_already_shortened"
 
 	/* Application folder names */
 

@@ -20,7 +20,7 @@ func IsURLValid(host string, requestUrl string) error {
 		return err
 	}
 	if IsURLAlreadyShorted(host, parsedUrl) {
-		return domain.ErrURLIsAlreadyShorted
+		return domain.ErrURLIsAlreadyShortened
 	}
 	if err == nil && parsedUrl.Scheme != "" && parsedUrl.Host != "" {
 		return nil

@@ -21,7 +21,7 @@ func TestIsURLValidError(t *testing.T) {
 		// Declare url
 		url := fmt.Sprintf("http://localhost:3002/shortUrl/2aa789c823074703b7baa8a524eb4aad")
 		err := IsURLValid("http://localhost:3002", url)
-		expectedErr := domain.ErrURLIsAlreadyShorted
+		expectedErr := domain.ErrURLIsAlreadyShortened
 		assert.EqualError(t, expectedErr, err.Error())
 	})
 	t.Run("Should return error of invalid url", func(t *testing.T) {
