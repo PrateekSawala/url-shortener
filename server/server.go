@@ -6,8 +6,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"url-shortener/domain/logging"
-	"url-shortener/endpoint"
+	"github.com/PrateekSawala/url-shortener/domain/logging"
+	"github.com/PrateekSawala/url-shortener/endpoint"
 
 	"github.com/gorilla/mux"
 )

@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"url-shortener/domain"
+	"github.com/PrateekSawala/url-shortener/domain"
 
 	"github.com/google/uuid"
 )

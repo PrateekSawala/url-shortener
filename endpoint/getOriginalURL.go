@@ -3,9 +3,9 @@ package endpoint
 import (
 	"net/http"
 
-	"url-shortener/domain"
-	"url-shortener/domain/logging"
-	"url-shortener/service"
+	"github.com/PrateekSawala/url-shortener/domain"
+	"github.com/PrateekSawala/url-shortener/domain/logging"
+	"github.com/PrateekSawala/url-shortener/service"
 
 	"github.com/gorilla/mux"
 )

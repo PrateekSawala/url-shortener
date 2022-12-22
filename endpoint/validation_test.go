@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"url-shortener/domain"
+	"github.com/PrateekSawala/url-shortener/domain"
 
 	"github.com/stretchr/testify/assert"
 )

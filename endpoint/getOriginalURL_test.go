@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"url-shortener/domain"
+	"github.com/PrateekSawala/url-shortener/domain"
 
 	"github.com/gorilla/mux"
 	"github.com/stretchr/testify/assert"

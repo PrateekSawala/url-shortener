@@ -1,4 +1,4 @@
-module url-shortener
+module github.com/PrateekSawala/url-shortener
 
 go 1.16
 

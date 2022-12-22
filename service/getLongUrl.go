@@ -1,9 +1,9 @@
 package service
 
 import (
-	"url-shortener/domain/logging"
+	"github.com/PrateekSawala/url-shortener/domain/logging"
 
-	"url-shortener/domain"
+	"github.com/PrateekSawala/url-shortener/domain"
 )
 
 func GetLongURL(shorturl string) (*domain.UrlInfo, error) {

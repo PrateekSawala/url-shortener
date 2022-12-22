@@ -1,7 +1,7 @@
 package main
 
 import (
-	"url-shortener/server"
+	"github.com/PrateekSawala/url-shortener/server"
 )
 
 // Initiate the Application

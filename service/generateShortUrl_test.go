@@ -5,7 +5,8 @@ import (
 	"path/filepath"
 	"testing"
 	"time"
-	"url-shortener/domain"
+
+	"github.com/PrateekSawala/url-shortener/domain"
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"

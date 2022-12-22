@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"strings"
 
-	"url-shortener/domain"
-	"url-shortener/domain/logging"
-	"url-shortener/service"
+	"github.com/PrateekSawala/url-shortener/domain"
+	"github.com/PrateekSawala/url-shortener/domain/logging"
+	"github.com/PrateekSawala/url-shortener/service"
 )
 
 func CreateShortURLHandler(writer http.ResponseWriter, request *http.Request) {

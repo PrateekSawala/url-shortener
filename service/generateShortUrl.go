@@ -11,8 +11,8 @@ import (
 	"runtime"
 	"strings"
 
-	"url-shortener/domain"
-	"url-shortener/domain/logging"
+	"github.com/PrateekSawala/url-shortener/domain"
+	"github.com/PrateekSawala/url-shortener/domain/logging"
 
 	"github.com/google/uuid"
 )
